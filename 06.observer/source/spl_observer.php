@@ -1,10 +1,12 @@
 <?php
 
-// 使用php的spl扩展函数包
-// SplSubject，观察者对象
-// SplObserver，观察者
-// SplObjectStorage，存储对象
-// http://www.php.net/manual/zh/book.spl.php
+/**
+ * PHP的SPL扩展
+ * SplSubject，观察者对象
+ * SplObserver，观察者
+ * SplObjectStorage，存储对象
+ * http://www.php.net/manual/zh/book.spl.php
+ */
 
 class ConcreteSubject implements SplSubject
 {
