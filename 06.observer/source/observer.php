@@ -26,7 +26,7 @@ class ConcreteObserver implements Observer
 
 /**
  * Class Subject
- * Subject 父类，维护一个观察者数组集合，有添加、删除、遍历数组的方法，目的是管理所有观察者
+ * Subject 观察对象，维护一个观察者数组集合，有添加、删除、遍历数组的方法，目的是管理所有观察者
  */
 class Subject
 {
