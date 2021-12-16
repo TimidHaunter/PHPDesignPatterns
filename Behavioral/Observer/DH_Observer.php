@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * 场景：同事都在摸鱼，想让前台秘书帮忙放风，如果领导来了，就在微信群中@所有人，告知一下。大家就会接着认真工作了。前台秘书就是 [Subject]，改变它的状态就是发现领导来视察了，通知就是在微信群里说一声，[observer] 就是摸鱼的同事。
+ */
+
 abstract class Subject
 {
     private $observers = [];
 
+    # 注入观察者对象，需要把它放在待通知列表里
     public function attach(Observer $observer)
     {
         array_push($this->observers, $observer);
@@ -73,6 +78,9 @@ class StockObserver extends Observer
     private $name;
     private $subject;
 
+    /**
+     * 注入 ConcreteSubject 观察的目标对象，需要调用它的 getState() 方法
+     */
     function __construct(ConcreteSubject $subject, $name)
     {
         $this->subject = $subject;
