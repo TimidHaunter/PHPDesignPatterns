@@ -1,0 +1,12 @@
+{
+    "name": "yintianxiong/php-design-patterns",
+    "authors": [
+        {
+            "name": "yintianxiong",
+            "email": "yintx_129@163.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
