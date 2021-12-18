@@ -10,12 +10,17 @@ abstract class Subject
 {
     private $observers = [];
 
-    # 注入观察者对象，需要把它放在待通知列表里
+    /**
+     * 注入观察者对象，需要把它放在待通知列表里
+     */
     public function attach(Observer $observer)
     {
         array_push($this->observers, $observer);
     }
 
+    /**
+     * 删除，需要判断一下，只删除待通知列表里面有的观察者
+     */
     public function detatch($observer)
     {
         foreach ($this->observers as $key => $value) {
@@ -26,8 +31,7 @@ abstract class Subject
     }
 
     /**
-     * 遍历所有的观察者
-     * 并且去通知他们
+     * 遍历所有的观察者，并且去通知他们
      */
     public function notify()
     {
@@ -73,7 +77,7 @@ class StockObserver extends Observer
 
     public function update()
     {
-        # 给所有的炒股的发微信通知
+        // 给所有的炒股的发微信通知
         echo "给观察者：".$this->name.'发微信，并且告诉他们'.$this->subject->getState().PHP_EOL;
     }
 }
@@ -91,7 +95,7 @@ class SeeVideoObserver extends Observer
 
     public function update()
     {
-        # 给所有的看视频的发QQ通知
+        // 给所有的看视频的发QQ通知
         echo "给观察者：".$this->name.'发QQ，并且告诉他们'.$this->subject->getState().PHP_EOL;
     }
 }
@@ -109,13 +113,13 @@ class SmokeObserver extends Observer
 
     public function update()
     {
-        # 给所有的抽烟的打电话通知
+        // 给所有的抽烟的打电话通知
         echo "给观察者：".$this->name.'打电话，并且告诉他们'.$this->subject->getState().PHP_EOL;
     }
 }
 
 $s = new ConcreteSubject();
-# Subject 和 Observer 相互依赖
+// Subject 和 Observer 相互依赖
 $StockObserver = new StockObserver($s, "yintian");
 $s->attach($StockObserver);
 
