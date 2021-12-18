@@ -1,7 +1,9 @@
 <?php
 
 /**
- * 场景：同事都在摸鱼，想让前台秘书帮忙放风，如果领导来了，就在微信群中@所有人，告知一下。大家就会接着认真工作了。前台秘书就是 [Subject]，改变它的状态就是发现领导来视察了，通知就是在微信群里说一声，[observer] 就是摸鱼的同事。
+ * 场景：同事都在摸鱼，想让前台秘书帮忙放风，如果领导来了，就在微信群中@所有人，告知一下。大家就会接着认真工作了。
+ * 前台秘书就是 [Subject]，改变它的状态就是发现领导来视察了，通知就是在微信群里说一声，[Observer] 就是摸鱼的同事。
+ * 有不同的摸鱼同事，有在工位看视频的[seeVideoObserver]，有在看股票的[StockObserver]，有在楼下抽烟的[SmokeObserver]，需要不同的方式提醒他们。
  */
 
 abstract class Subject
@@ -35,11 +37,6 @@ abstract class Subject
     }
 }
 
-abstract class Observer
-{
-    abstract function update();
-}
-
 class ConcreteSubject extends Subject
 {
     private $subjectState;
@@ -55,23 +52,10 @@ class ConcreteSubject extends Subject
     }
 }
 
-//class ConcreteObserver extends Observer
-//{
-//    private $name;
-//    private $subject;
-//
-//    function __construct(ConcreteSubject $subject, $name)
-//    {
-//        $this->subject = $subject;
-//        $this->name = $name;
-//    }
-//
-//    public function update()
-//    {
-//        # 可以有其他的业务逻辑，比如操作数据库，操作邮件，操作短信
-//        echo "观察者：".$this->name."的新状态是:".$this->subject->getState()."\n";
-//    }
-//}
+abstract class Observer
+{
+    abstract function update();
+}
 
 class StockObserver extends Observer
 {
@@ -146,5 +130,6 @@ $s->attach(new SmokeObserver($s, "xiaokun"));
 //$z = new ConcreteObserver($s, "zenghu");
 //$s->attach($z);
 //$s->detatch($z);
+
 $s->setState('boss coming!');
 $s->notify();
